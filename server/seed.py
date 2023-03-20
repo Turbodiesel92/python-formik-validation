@@ -8,8 +8,6 @@ from faker import Faker
 from app import app
 from models import db, Customer
 
-db.init_app(app)
-
 fake = Faker()
 
 usernames = [fake.first_name() for i in range(4)]
@@ -19,7 +17,7 @@ if "Duane" not in usernames:
 def make_customers():
 
     Customer.query.delete()
-    
+
     customers = []
 
     for i in range(3):
@@ -31,7 +29,7 @@ def make_customers():
         customers.append(customer)
 
     db.session.add_all(customers)
-    db.session.commit()        
+    db.session.commit()
 
 if __name__ == '__main__':
     with app.app_context():
